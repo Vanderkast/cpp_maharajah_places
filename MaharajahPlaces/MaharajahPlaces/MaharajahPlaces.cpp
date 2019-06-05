@@ -1,4 +1,4 @@
-// MaharajahPlaces.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+﻿// MaharajahPlaces.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
 // 
 // Найти количество расстановок K фигур магарадж на доске N x N так, что бы они не били друг друга
 // прим.: магараджа сочетает в себе свойства ферзя и коня.
@@ -47,8 +47,8 @@ Desk* buildDesk(int height, int width) {
 	try {
 		return new Desk(height, width);
 	}
-	catch (char* e) {
-		cout << e << "\nContinuation of program is not possible.\n";
+	catch (exception e) {
+		cout << e.what() << "\nContinuation of program is not possible.\n";
 	}
 	return NULL;
 }
