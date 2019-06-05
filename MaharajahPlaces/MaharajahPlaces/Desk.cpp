@@ -24,7 +24,7 @@ Desk::Desk(int height, int width) {
 
 void checkInputOnLegal(int height, int width) {
 	if (height <= 0 || width <= 0)
-		throw std::exception(ILLEGAL_MATRIX_INPUT_DATA_EXCEPTION_MESSAGE);
+		throw ILLEGAL_MATRIX_INPUT_DATA_EXCEPTION_MESSAGE;
 }
 
 std::vector<std::vector<bool>> createDesk(int height, int width) {
@@ -69,19 +69,19 @@ void Desk::fillColumn(int x, bool value) {
 }
 
 void Desk::fillMainDiagonal(int y, int x, bool value) {
-	int yPoint = y > x ? y - x: 0;
-	int xPoint = x > y ? x - y : 0;
+	int yPoint = x > _width - y - 1 ? 0 : y - x;
+	int xPoint = x > _width - y - 1 ? x - y : 0;
 	while (xPoint < _width && yPoint < _height) {
 		_desk[yPoint++][xPoint++] = value;
 	}
 }
 
 void Desk::fillAdditionalDiagonal(int y, int x, bool value) {
-	int yPoint = y > x ? 0 : ;
-	int xPoint = x > y ? _width - 1 : _width - x - 1;
-	while (xPoint >= 0 && yPoint < _height) {
-		_desk[yPoint++][xPoint--] = value;
-	}
+    int yPoint = x > y ? _width - x - 1 - y : 0;
+    int xPoint = x > y ? _width - 1 : 0;
+    while (xPoint >= 0 && yPoint < _height) {
+        _desk[yPoint++][xPoint--] = value;
+    }
 }
 
 bool Desk::value(int y, int x) {
